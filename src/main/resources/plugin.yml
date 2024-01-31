@@ -1,0 +1,6 @@
+name: WrenchBanner
+version: '${project.version}'
+main: com.mcstaralliance.wrenchbanner.WrenchBanner
+api-version: '1.16'
+depend:
+  - Residence
