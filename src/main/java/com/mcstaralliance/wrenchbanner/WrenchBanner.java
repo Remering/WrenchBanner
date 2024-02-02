@@ -7,7 +7,7 @@ public final class WrenchBanner extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
     }
 
 }
