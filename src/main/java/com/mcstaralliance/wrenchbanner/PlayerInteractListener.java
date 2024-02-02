@@ -11,13 +11,13 @@ import org.bukkit.inventory.ItemStack;
 
 public class PlayerInteractEventListener implements Listener {
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent interactEvent) {
-        ItemStack item = interactEvent.getItem();
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        ItemStack item = event.getItem();
         if (item == null) return;
-        Player player = interactEvent.getPlayer();
+        Player player = event.getPlayer();
         ClaimedResidence residence = ResidenceApi.getResidenceManager().getByLoc(player.getLocation());
         if (residence != null && residence.getPermissions().playerHas(player, Flags.destroy, false)) return;
         if (!"create_wrench".equals(item.getType().getKey().getKey())) return;
-        interactEvent.setCancelled(true);
+        event.setCancelled(true);
     }
 }
