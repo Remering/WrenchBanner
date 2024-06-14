@@ -28,21 +28,18 @@ public class PlayerInteractListener implements Listener {
         
         ClaimedResidence residence = ResidenceApi.getResidenceManager().getByLoc(event.getClickedBlock().getLocation());
         if (residence != null && residence.getPermissions().playerHas(player, Flags.destroy, false)) {
-            // 如果领地存在且玩家没有破坏权限
-            event.setCancelled(true);
-            for (Player p : Bukkit.getOnlinePlayers()) {
-                Location loc = event.getClickedBlock().getLocation();
-                int x = loc.getBlockX();
-                int y = loc.getBlockY();
-                int z = loc.getBlockZ();
-                String pos = x + "," + y + "," + z;
-                if (p.isOp()) {
-                    p.sendMessage("WrenchBanner 已在" + pos + "阻止疑似刷物品行为。");
-                }
-            }
             return;
         }
-    
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            Location loc = event.getClickedBlock().getLocation();
+            int x = loc.getBlockX();
+            int y = loc.getBlockY();
+            int z = loc.getBlockZ();
+            String pos = x + "," + y + "," + z;
+            if (p.isOp()) {
+                p.sendMessage("WrenchBanner 已在" + pos + "阻止疑似刷物品行为。");
+            }
+        }
         event.setCancelled(true);
     }
 }
