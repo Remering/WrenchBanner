@@ -38,6 +38,7 @@ public class PlayerInteractListener implements Listener {
             String pos = x + "," + y + "," + z;
             if (p.isOp()) {
                 p.sendMessage("WrenchBanner 已在" + pos + "阻止疑似刷物品行为。");
+                p.sendMessage("物品名: " + item.getType().name());
             }
         }
         event.setCancelled(true);
