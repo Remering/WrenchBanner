@@ -4,7 +4,9 @@ import com.bekvon.bukkit.residence.api.ResidenceApi;
 import com.bekvon.bukkit.residence.containers.Flags;
 import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,6 +32,10 @@ public class PlayerInteractListener implements Listener {
         if (residence != null && residence.getPermissions().playerHas(player, Flags.destroy, false)) {
             return;
         }
+
+        if (residence == null) {
+            return;
+        }
         for (Player p : Bukkit.getOnlinePlayers()) {
             Location loc = event.getClickedBlock().getLocation();
             int x = loc.getBlockX();
@@ -42,5 +48,6 @@ public class PlayerInteractListener implements Listener {
             }
         }
         event.setCancelled(true);
+        player.sendMessage(ChatColor.RED + "请在领地内使用机械动力扳手。");
     }
 }
